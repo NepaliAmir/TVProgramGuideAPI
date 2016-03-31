@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NepalChannelScheduleModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="ChannelCategories">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.ChannelCategory">
+        <MappingFragment StoreEntitySet="tblChannelCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChannelDetails">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.ChannelDetail">
+        <MappingFragment StoreEntitySet="tblChannelDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+          <ScalarProperty Name="ChannelName" ColumnName="ChannelName" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ChannelTypeID" ColumnName="ChannelTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Days">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.Day">
+        <MappingFragment StoreEntitySet="tblDays">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DayId" ColumnName="DayId" />
+          <ScalarProperty Name="DayName" ColumnName="DayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.Language">
+        <MappingFragment StoreEntitySet="tblLanguage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="LanguageName" ColumnName="LanguageName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramCategories">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.ProgramCategory">
+        <MappingFragment StoreEntitySet="tblProgramCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProgramCategoryId" ColumnName="ProgramCategoryId" />
+          <ScalarProperty Name="ProgramCategoryName" ColumnName="ProgramCategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramDetails">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.ProgramDetail">
+        <MappingFragment StoreEntitySet="tblProgramDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+          <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+          <ScalarProperty Name="ProgramTypeId" ColumnName="ProgramTypeId" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ProgramLanguageId" ColumnName="ProgramLanguageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramTypeDetails">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.ProgramTypeDetail">
+        <MappingFragment StoreEntitySet="tblProgramTypeDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProgramTypeId" ColumnName="ProgramTypeId" />
+          <ScalarProperty Name="ProgramTypeName" ColumnName="ProgramTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblScheduleDetails">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.tblScheduleDetail">
+        <MappingFragment StoreEntitySet="tblScheduleDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="WeekDayId" ColumnName="WeekDayId" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="getallChannelName" FunctionName="NepalChannelScheduleModel.Store.getallChannelName" />
+    <FunctionImportMapping FunctionImportName="SaveChhannelName" FunctionName="NepalChannelScheduleModel.Store.SaveChhannelName" />
+    <FunctionImportMapping FunctionImportName="updateImagePath" FunctionName="NepalChannelScheduleModel.Store.updateImagePath" />
+  </EntityContainerMapping>
+</Mapping>

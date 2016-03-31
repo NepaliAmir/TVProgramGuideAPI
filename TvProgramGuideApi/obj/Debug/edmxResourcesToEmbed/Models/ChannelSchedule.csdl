@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NepalChannelScheduleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChannelCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ChannelDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChannelId" Type="Int32" />
+    <Property Name="ChannelName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ChannelTypeID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Day">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DayId" Type="Int32" />
+    <Property Name="DayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LanguageId" Type="Int32" Nullable="false" />
+    <Property Name="LanguageName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProgramCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="ProgramCategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProgramDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramId" Type="Int32" />
+    <Property Name="ProgramName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ChannelId" Type="Int32" />
+    <Property Name="ProgramTypeId" Type="Int32" />
+    <Property Name="isActive" Type="Boolean" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ProgramLanguageId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProgramTypeDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramTypeId" Type="Int32" />
+    <Property Name="ProgramTypeName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblScheduleDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="ScheduleId" Type="Int32" />
+    <Property Name="ProgramId" Type="Int32" />
+    <Property Name="WeekDayId" Type="Int32" />
+    <Property Name="StartTime" Type="Double" />
+    <Property Name="EndTime" Type="Double" />
+  </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChannelCategories" EntityType="NepalChannelScheduleModel.ChannelCategory" />
+    <EntitySet Name="ChannelDetails" EntityType="NepalChannelScheduleModel.ChannelDetail" />
+    <EntitySet Name="Days" EntityType="NepalChannelScheduleModel.Day" />
+    <EntitySet Name="Languages" EntityType="NepalChannelScheduleModel.Language" />
+    <EntitySet Name="ProgramCategories" EntityType="NepalChannelScheduleModel.ProgramCategory" />
+    <EntitySet Name="ProgramDetails" EntityType="NepalChannelScheduleModel.ProgramDetail" />
+    <EntitySet Name="ProgramTypeDetails" EntityType="NepalChannelScheduleModel.ProgramTypeDetail" />
+    <EntitySet Name="tblScheduleDetails" EntityType="Self.tblScheduleDetail" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+    <FunctionImport Name="getallChannelName" />
+    <FunctionImport Name="SaveChhannelName">
+      <Parameter Name="ChannelName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updateImagePath">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

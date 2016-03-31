@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NepalChannelScheduleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblChannelCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblChannelDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChannelId" Type="int" />
+    <Property Name="ChannelName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="2000" />
+    <Property Name="ChannelTypeID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblDays">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DayId" Type="int" />
+    <Property Name="DayName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblLanguage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LanguageId" Type="int" Nullable="false" />
+    <Property Name="LanguageName" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblProgramCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProgramCategoryId" Type="int" Nullable="false" />
+    <Property Name="ProgramCategoryName" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="tblProgramDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProgramId" Type="int" />
+    <Property Name="ProgramName" Type="nvarchar" MaxLength="250" />
+    <Property Name="ChannelId" Type="int" />
+    <Property Name="ProgramTypeId" Type="int" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="ImagePath" Type="varchar" MaxLength="250" />
+    <Property Name="ProgramLanguageId" Type="int" />
+  </EntityType>
+  <EntityType Name="tblProgramTypeDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProgramTypeId" Type="int" />
+    <Property Name="ProgramTypeName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="tblScheduleDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="ScheduleId" Type="int" />
+    <Property Name="ProgramId" Type="int" />
+    <Property Name="WeekDayId" Type="int" />
+    <Property Name="StartTime" Type="float" />
+    <Property Name="EndTime" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'NepalChannelSchedule.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="create_date" Type="datetime" Nullable="false" />
+    <Property Name="modify_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Function Name="getallChannelName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SaveChhannelName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ChannelName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="updateImagePath" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="NepalChannelScheduleModelStoreContainer">
+    <EntitySet Name="tblChannelCategory" EntityType="Self.tblChannelCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblChannelDetails" EntityType="Self.tblChannelDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblDays" EntityType="Self.tblDays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblLanguage" EntityType="Self.tblLanguage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProgramCategory" EntityType="Self.tblProgramCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProgramDetails" EntityType="Self.tblProgramDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProgramTypeDetails" EntityType="Self.tblProgramTypeDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblScheduleDetails" EntityType="Self.tblScheduleDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+      <DefiningQuery>SELECT 
+[database_firewall_rules].[id] AS [id], 
+[database_firewall_rules].[name] AS [name], 
+[database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+[database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+[database_firewall_rules].[create_date] AS [create_date], 
+[database_firewall_rules].[modify_date] AS [modify_date]
+FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

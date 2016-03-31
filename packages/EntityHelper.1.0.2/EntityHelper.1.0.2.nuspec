@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>EntityHelper</id>
+    <version>1.0.2</version>
+    <title />
+    <authors>Giorgi Bakuridze</authors>
+    <owners>Giorgi Bakuridze</owners>
+    <projectUrl>https://skydrive.live.com/redir?resid=716CBE473C5EFA45!222&amp;authkey=!AIUVZJC7uT7XONA</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>EntityFrameWork Helper</description>
+  </metadata>
+</package>
