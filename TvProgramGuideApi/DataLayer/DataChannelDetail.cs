@@ -32,12 +32,7 @@ namespace TvProgramGuideApi.DataLayer
             var languageType = db.Languages.ToList();
             return languageType;
         }
-        public dynamic GetAllProgramCategory()
-        {
-            var programCategory = db.ProgramCategories.ToList();
-            return programCategory;
-        }
-
+       
         public void SaveChannelDetail(string ChannelName)
         {
             ChannelDetail channelDetail = new ChannelDetail();
@@ -65,5 +60,7 @@ namespace TvProgramGuideApi.DataLayer
                 db.SaveChanges();
             }
         }
+
+
     }
 }

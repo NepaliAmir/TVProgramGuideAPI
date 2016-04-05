@@ -15,7 +15,7 @@ namespace TvProgramGuideApi.ServiceLayer
         void UpdateChannelDetail(string ChannelName, int? channelId);
         List<ChannelCategory> GetAllChannelCategoty();
         List<Language> GetAllLanguageType();
-        List<ProgramCategory> GetAllProgramCategory();
+      
 
     }
 }

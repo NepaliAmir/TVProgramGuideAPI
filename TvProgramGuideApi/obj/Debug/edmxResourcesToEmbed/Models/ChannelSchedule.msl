@@ -71,10 +71,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="tblScheduleDetails">
-      <EntityTypeMapping TypeName="NepalChannelScheduleModel.tblScheduleDetail">
+    <EntitySetMapping Name="ScheduleDetails">
+      <EntityTypeMapping TypeName="NepalChannelScheduleModel.ScheduleDetail">
         <MappingFragment StoreEntitySet="tblScheduleDetails">
+          <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="meridiem" ColumnName="meridiem" />
+          <ScalarProperty Name="programShowDate" ColumnName="programShowDate" />
           <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
           <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
           <ScalarProperty Name="WeekDayId" ColumnName="WeekDayId" />

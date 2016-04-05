@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NepalChannelScheduleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NepalChannelScheduleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblChannelCategory">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,12 +72,15 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="ScheduleId" Type="int" />
           <Property Name="ProgramId" Type="int" />
           <Property Name="WeekDayId" Type="int" />
           <Property Name="StartTime" Type="float" />
           <Property Name="EndTime" Type="float" />
+          <Property Name="Id" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="programShowDate" Type="datetime" Nullable="false" />
+          <Property Name="meridiem" Type="varchar" MaxLength="5" />
+          <Property Name="ChannelId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'NepalChannelSchedule.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -125,8 +128,7 @@ warning 6002: The table/view 'NepalChannelSchedule.sys.database_firewall_rules' 
 FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NepalChannelScheduleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -193,16 +195,19 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <Property Name="ProgramTypeId" Type="Int32" />
           <Property Name="ProgramTypeName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="tblScheduleDetail">
+        <EntityType Name="ScheduleDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ScheduleId" Type="Int32" />
           <Property Name="ProgramId" Type="Int32" />
           <Property Name="WeekDayId" Type="Int32" />
           <Property Name="StartTime" Type="Double" />
           <Property Name="EndTime" Type="Double" />
+          <Property Name="programShowDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="meridiem" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChannelId" Type="Int32" />
         </EntityType>
         <EntityType Name="database_firewall_rules">
           <Key>
@@ -228,11 +233,11 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <EntitySet Name="ProgramCategories" EntityType="NepalChannelScheduleModel.ProgramCategory" />
           <EntitySet Name="ProgramDetails" EntityType="NepalChannelScheduleModel.ProgramDetail" />
           <EntitySet Name="ProgramTypeDetails" EntityType="NepalChannelScheduleModel.ProgramTypeDetail" />
-          <EntitySet Name="tblScheduleDetails" EntityType="Self.tblScheduleDetail" />
+          <EntitySet Name="ScheduleDetails" EntityType="NepalChannelScheduleModel.ScheduleDetail" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <FunctionImport Name="getallChannelName" />
           <FunctionImport Name="SaveChhannelName">
-            <Parameter Name="ChannelName" Mode="In" Type="String" />
+          <Parameter Name="ChannelName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="updateImagePath">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -315,10 +320,13 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblScheduleDetails">
-            <EntityTypeMapping TypeName="NepalChannelScheduleModel.tblScheduleDetail">
+          <EntitySetMapping Name="ScheduleDetails">
+            <EntityTypeMapping TypeName="NepalChannelScheduleModel.ScheduleDetail">
               <MappingFragment StoreEntitySet="tblScheduleDetails">
+                <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="meridiem" ColumnName="meridiem" />
+                <ScalarProperty Name="programShowDate" ColumnName="programShowDate" />
                 <ScalarProperty Name="ScheduleId" ColumnName="ScheduleId" />
                 <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
                 <ScalarProperty Name="WeekDayId" ColumnName="WeekDayId" />

@@ -6,9 +6,10 @@ using TvProgramGuideApi.Models;
 using TvProgramGuideApi.ServiceLayer;
 namespace TvProgramGuideApi.Repository
 {
-    public class Factory : IFactory
+    public class ChannelFactory : IChannelFactory
     {
         public ChannelService channelService = new ChannelService();
+       
         public List<ChannelDetail> GetAllChannels()
         {
             ChannelService channelService = new ChannelService();
@@ -28,12 +29,7 @@ namespace TvProgramGuideApi.Repository
             lstLangugae = channelService.GetAllLanguageType();
             return lstLangugae;
         }
-        public List<ProgramCategory> GetAllProgramCategory()
-        {
-            List<ProgramCategory> lstProgramCategory = new List<ProgramCategory>();
-            lstProgramCategory = channelService.GetAllProgramCategory();
-            return lstProgramCategory;
-        }
+       
         public void SaveChannelLogoImagePath(int channelId, string imageName)
         {
 

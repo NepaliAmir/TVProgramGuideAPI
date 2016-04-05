@@ -15,11 +15,11 @@ namespace TvProgramGuideApi.Models
     using System.Data.Objects;
     using System.Data.Objects.DataClasses;
     using System.Linq;
-
+    
     public partial class NepalChannelScheduleEntities : DbContext
     {
-         public NepalChannelScheduleEntities()
-            : base("name=NepalChannelScheduleEntities")
+        public NepalChannelScheduleEntities()
+            : base("name=Entities")
         {
         }
     
@@ -35,7 +35,7 @@ namespace TvProgramGuideApi.Models
         public DbSet<ProgramCategory> ProgramCategories { get; set; }
         public DbSet<ProgramDetail> ProgramDetails { get; set; }
         public DbSet<ProgramTypeDetail> ProgramTypeDetails { get; set; }
-        public DbSet<tblScheduleDetail> tblScheduleDetails { get; set; }
+        public DbSet<ScheduleDetail> ScheduleDetails { get; set; }
         public DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     
         public virtual int getallChannelName()

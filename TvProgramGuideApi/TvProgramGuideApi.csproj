@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -150,7 +151,9 @@
     <Compile Include="Controllers\ChannelController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
+    <Compile Include="Controllers\ProgramController.cs" />
     <Compile Include="DataLayer\DataChannelDetail.cs" />
+    <Compile Include="DataLayer\DataProgramDetail.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +187,7 @@
     <Compile Include="Models\DTO\ChannelDetailDTO.cs" />
     <Compile Include="Models\DTO\ProgramDetailDTO.cs" />
     <Compile Include="Models\DTO\ProgramInfoDTO.cs" />
+    <Compile Include="Models\DTO\ProgramsDetailsScheduleDTO.cs" />
     <Compile Include="Models\Language.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
     </Compile>
@@ -197,7 +201,7 @@
     <Compile Include="Models\ProgramTypeDetail.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblScheduleDetail.cs">
+    <Compile Include="Models\ScheduleDetail.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TutorialModel.cs" />
@@ -206,15 +210,17 @@
     <Compile Include="Photo\IPhotoManager.cs" />
     <Compile Include="Photo\PhotoActionResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Factory.cs" />
-    <Compile Include="Repository\IFactory.cs" />
+    <Compile Include="Repository\ChannelFactory.cs" />
+    <Compile Include="Repository\IChannelFactory.cs" />
+    <Compile Include="Repository\IProgramFactory.cs" />
+    <Compile Include="Repository\ProgramFactory.cs" />
     <Compile Include="ServiceLayer\ChannelService.cs" />
     <Compile Include="ServiceLayer\IChannelService.cs" />
+    <Compile Include="ServiceLayer\IProgramService.cs" />
+    <Compile Include="ServiceLayer\ProgramService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -262,14 +268,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

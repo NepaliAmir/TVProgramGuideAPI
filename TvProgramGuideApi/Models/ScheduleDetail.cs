@@ -12,13 +12,16 @@ namespace TvProgramGuideApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblScheduleDetail
+    public partial class ScheduleDetail
     {
-        public int Id { get; set; }
         public Nullable<int> ScheduleId { get; set; }
         public Nullable<int> ProgramId { get; set; }
         public Nullable<int> WeekDayId { get; set; }
         public Nullable<double> StartTime { get; set; }
         public Nullable<double> EndTime { get; set; }
+        public System.DateTime programShowDate { get; set; }
+        public string meridiem { get; set; }
+        public decimal Id { get; set; }
+        public Nullable<int> ChannelId { get; set; }
     }
 }

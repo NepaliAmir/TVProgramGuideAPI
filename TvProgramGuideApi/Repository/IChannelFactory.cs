@@ -8,7 +8,7 @@ using TvProgramGuideApi.Models;
 
 namespace TvProgramGuideApi.Repository
 {
-    public interface IFactory
+    public interface IChannelFactory
     {
         List<ChannelDetail> GetAllChannels();
         void SaveChannelLogoImagePath(int channelId, string imageName);
@@ -16,7 +16,7 @@ namespace TvProgramGuideApi.Repository
         void UpdateChannelDetail(string channelName, int? channelId);
         List<ChannelCategory> GetAllChannelCategoty();
         List<Language> GetAllLanguageType();
-        List<ProgramCategory> GetAllProgramCategory();
+       
 
     }
 }

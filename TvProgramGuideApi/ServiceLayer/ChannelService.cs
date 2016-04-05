@@ -32,29 +32,11 @@ namespace TvProgramGuideApi.ServiceLayer
                 }
                 catch (Exception e)
                 {
+                    Exception exception = e;
                     return null;
                 }
             }
             return lstchannelDetail;
-        }
-        public List<ProgramCategory> GetAllProgramCategory()
-        {
-            List<ProgramCategory> lstProgramCategory = new List<ProgramCategory>();
-            var items = datachannelDetail.GetAllProgramCategory();
-            if (items != null)
-            {
-                foreach (var item in items)
-                {
-                    ProgramCategory programCategory = new ProgramCategory()
-                    {
-                        ProgramCategoryId = Convert.ToInt16(item.ProgramCategoryId),
-                        ProgramCategoryName = item.ProgramCategoryName
-                    };
-                    lstProgramCategory.Add(programCategory);
-                }
-
-            }
-            return lstProgramCategory;
         }
         public List<Language> GetAllLanguageType()
         {
@@ -94,9 +76,10 @@ namespace TvProgramGuideApi.ServiceLayer
                         lstchannelCategory.Add(channelcategory);
                     }
                 }
-                catch(Exception e) 
+                catch (Exception e)
                 {
-                    return null; 
+                    Exception ex = e;
+                    return null;
                 }
 
             }
