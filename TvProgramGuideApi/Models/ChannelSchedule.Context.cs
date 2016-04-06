@@ -19,7 +19,7 @@ namespace TvProgramGuideApi.Models
     public partial class NepalChannelScheduleEntities : DbContext
     {
         public NepalChannelScheduleEntities()
-            : base("name=Entities")
+            : base("name=NepalChannelScheduleEntities")
         {
         }
     
