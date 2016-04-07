@@ -10,7 +10,7 @@ namespace TvProgramGuideApi.DataLayer
 {
     public class DataProgramDetail
     {
-        public NepalChannelScheduleEntities db = new NepalChannelScheduleEntities();
+        public Entities db = new Entities();
         public dynamic GetAllProgramCategory()
         {
             var programCategory = db.ProgramCategories.ToList();
@@ -24,7 +24,16 @@ namespace TvProgramGuideApi.DataLayer
                                join programDetails in db.ProgramDetails on scheduleDetails.ProgramId
                                    equals programDetails.ProgramId
                                where scheduleDetails.ChannelId == id
-                               select new { ScheduleDetail = scheduleDetails, ProgramDetail = programDetails };
+                               select new
+                               {
+                                   scheduleDetails.ProgramId,
+                                   scheduleDetails.StartTime,
+                                   scheduleDetails.EndTime,
+                                   scheduleDetails.meridiem,
+                                   scheduleDetails.programShowDate,
+                                   programDetails.ImagePath,
+                                   programDetails.ProgramName
+                               };
                 return programs;
             }
             else

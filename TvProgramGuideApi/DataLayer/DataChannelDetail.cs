@@ -11,7 +11,7 @@ namespace TvProgramGuideApi.DataLayer
     public class DataChannelDetail
     {
 
-        public NepalChannelScheduleEntities db = new NepalChannelScheduleEntities();
+        public Entities db = new Entities();
         public dynamic GetAllChannelDetails()
         {
             //db.database_firewall_rules();

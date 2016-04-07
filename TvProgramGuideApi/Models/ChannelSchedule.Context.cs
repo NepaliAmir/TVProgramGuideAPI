@@ -16,10 +16,10 @@ namespace TvProgramGuideApi.Models
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class NepalChannelScheduleEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public NepalChannelScheduleEntities()
-            : base("name=NepalChannelScheduleEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

@@ -16,17 +16,16 @@ namespace TvProgramGuideApi.ServiceLayer
         {
             var scheduleDetailsobject = dataProgramDetail.GetAllProgramDetailsByChannelId(channelId);
             List<ProgramsDetailsScheduleDTO> lstProgramScheduleDetails = new List<ProgramsDetailsScheduleDTO>();
-
-
+            
             if (scheduleDetailsobject != null)
             {
                 foreach (var item in scheduleDetailsobject)
                 {
                     ProgramsDetailsScheduleDTO ProgramScheduleDetails = new ProgramsDetailsScheduleDTO()
                     {
-                        ProgramId = item.ProgramId,
+                        ProgramId = Convert.ToInt32(item.ProgramId),
                         ProgramName = item.ProgramName,
-                        ProgramLogoImagePath = item.ProgramLogoImagePath,
+                        ProgramLogoImagePath = item.ImagePath,
                         ProgramShowStartTime = item.StartTime,
                         ProgramShowEndTime = item.EndTime,
                         TimeMeridiem = item.meridiem,

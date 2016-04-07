@@ -7,7 +7,7 @@ namespace TvProgramGuideApi.Models.DTO
 {
     public class ProgramsDetailsScheduleDTO
     {
-        public double ProgramId { get; set; }
+        public Nullable<int> ProgramId { get; set; }
         public string ProgramName { get; set; }
         public string ProgramLogoImagePath { get; set; }
         public double ProgramShowStartTime { get; set; }
