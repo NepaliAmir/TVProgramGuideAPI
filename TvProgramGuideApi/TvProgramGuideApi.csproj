@@ -179,7 +179,7 @@
       <DependentUpon>ChannelSchedule.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\database_firewall_rules.cs">
-      <DependentUpon>ChannelSchedule.tt</DependentUpon>
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Day.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
@@ -191,12 +191,45 @@
     <Compile Include="Models\Language.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pg_ChannelCategory.cs">
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pg_Channels.cs">
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pg_ChannelSchedule.cs">
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pg_Language.cs">
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pg_ProgramCategory.cs">
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\pg_Programs.cs">
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\PhotoViewModel.cs" />
     <Compile Include="Models\ProgramCategory.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProgramDetail.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgramGuideEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProgramGuideEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgramGuideEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProgramGuideEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgramGuideEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProgramGuideEntity.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ProgramTypeDetail.cs">
       <DependentUpon>ChannelSchedule.tt</DependentUpon>
@@ -253,6 +286,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ChannelSchedule.edmx</DependentUpon>
       <LastGenOutput>ChannelSchedule.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\ProgramGuideEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProgramGuideEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ProgramGuideEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProgramGuideEntity.edmx</DependentUpon>
+      <LastGenOutput>ProgramGuideEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ProgramGuideEntity.edmx.diagram">
+      <DependentUpon>ProgramGuideEntity.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ProgramGuideEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProgramGuideEntity.edmx</DependentUpon>
+      <LastGenOutput>ProgramGuideEntity.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
