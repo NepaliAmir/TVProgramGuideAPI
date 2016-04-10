@@ -14,8 +14,15 @@ namespace TvProgramGuideApi.Models
     
     public partial class ChannelCategory
     {
-        public int Id { get; set; }
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public ChannelCategory()
+        {
+            this.pg_Channels = new HashSet<Channels>();
+        }
+    
+        public int SNo { get; set; }
+        public string ChannelCategoryId { get; set; }
+        public string Description { get; set; }
+    
+        public virtual ICollection<Channels> pg_Channels { get; set; }
     }
 }

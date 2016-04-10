@@ -15,7 +15,7 @@ namespace TvProgramGuideApi.Models
     public partial class Language
     {
         public int Id { get; set; }
-        public int LanguageId { get; set; }
-        public string LanguageName { get; set; }
+        public Nullable<int> languageId { get; set; }
+        public string Name { get; set; }
     }
 }

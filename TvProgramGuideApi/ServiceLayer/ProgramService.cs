@@ -49,7 +49,7 @@ namespace TvProgramGuideApi.ServiceLayer
                     ProgramCategory programCategory = new ProgramCategory()
                     {
                         ProgramCategoryId = Convert.ToInt16(item.ProgramCategoryId),
-                        ProgramCategoryName = item.ProgramCategoryName
+                        Description = item.ProgramCategoryName
                     };
                     lstProgramCategory.Add(programCategory);
                 }

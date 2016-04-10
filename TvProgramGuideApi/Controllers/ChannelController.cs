@@ -7,9 +7,16 @@ using System.Web.Http;
 using TvProgramGuideApi.Models.DTO;
 using TvProgramGuideApi.Models;
 using TvProgramGuideApi.Repository;
+using TvProgramGuideApi.Models.ViewModel;
+using System.Web.Http.Cors;
+using TvProgramGuideApi.App_Start;
 
 namespace TvProgramGuideApi.Controllers
 {
+   // [EnableCors(origins: "http://tvprogramapi.azurewebsites.net", headers: "*", methods: "*")]
+   // [EnableCors(origins: "http://localhost:7783/", headers: "*", methods: "post,get")]
+
+    [AllowCORS]
     public class ChannelController : ApiController
     {
         #region get
@@ -18,7 +25,7 @@ namespace TvProgramGuideApi.Controllers
         [HttpGet]
         public HttpResponseMessage AllChannelName()
         {
-            List<ChannelDetail> channels = new List<ChannelDetail>();
+            List<ChannelInfoViewModel> channels = new List<ChannelInfoViewModel>();
             channels = factory.GetAllChannels();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, channels);
             return response;
@@ -85,27 +92,27 @@ namespace TvProgramGuideApi.Controllers
         }
         #endregion
 
-        
+
         #region post
         [HttpPost]
-        public void SaveUpdateChannelDetail(ChannelDetail channelDetail)
+        public void SaveUpdateChannelDetail(Channels channelDetail)
         {
             ChannelFactory factory = new ChannelFactory();
 
             if (channelDetail.ChannelId != null)
             {
-                factory.UpdateChannelDetail(channelDetail.ChannelName, channelDetail.ChannelId);
+                factory.UpdateChannelDetail(channelDetail.Name, channelDetail.ChannelId);
             }
             else
             {
-                factory.SaveChannelDetail(channelDetail.ChannelName);
+                factory.SaveChannelDetail(channelDetail.Name);
             }
         }
 
         [HttpPost]
         public HttpResponseMessage ImagePath(PhotoViewModel photoDetail)
         {
-            int ChannelId = photoDetail.ChannelId;
+            string ChannelId = photoDetail.ChannelId;
             string imageName = photoDetail.Name;
             ChannelFactory factory = new ChannelFactory();
             factory.SaveChannelLogoImagePath(ChannelId, imageName);

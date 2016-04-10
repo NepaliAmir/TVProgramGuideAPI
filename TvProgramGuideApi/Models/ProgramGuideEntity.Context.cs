@@ -16,9 +16,9 @@ namespace TvProgramGuideApi.Models
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class cMind_ProgramGuideEntities : DbContext
+    public partial class ProgramGuideEntities : DbContext
     {
-        public cMind_ProgramGuideEntities()
+        public ProgramGuideEntities()
             : base("name=cMind_ProgramGuideEntities")
         {
         }
@@ -28,12 +28,12 @@ namespace TvProgramGuideApi.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<pg_ChannelCategory> pg_ChannelCategory { get; set; }
-        public DbSet<pg_Channels> pg_Channels { get; set; }
-        public DbSet<pg_ChannelSchedule> pg_ChannelSchedule { get; set; }
-        public DbSet<pg_Language> pg_Language { get; set; }
-        public DbSet<pg_ProgramCategory> pg_ProgramCategory { get; set; }
-        public DbSet<pg_Programs> pg_Programs { get; set; }
+        public DbSet<ChannelCategory> ChannelCategories { get; set; }
+        public DbSet<Channels> Channels { get; set; }
+        public DbSet<ChannelSchedule> ChannelSchedules { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<ProgramCategory> ProgramCategories { get; set; }
+        public DbSet<Programs> Programs { get; set; }
         public DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     
         public virtual int Insertchannel(string channelCategoryId, string name)

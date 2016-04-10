@@ -168,7 +168,7 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ProgramGuideModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="pg_ChannelCategory">
+        <EntityType Name="ChannelCategory">
           <Key>
             <PropertyRef Name="ChannelCategoryId" />
           </Key>
@@ -177,7 +177,7 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="pg_Channels" Relationship="Self.FK_pg_Channels_pg_ChannelCategory" FromRole="pg_ChannelCategory" ToRole="pg_Channels" />
         </EntityType>
-        <EntityType Name="pg_Channels">
+        <EntityType Name="Channels">
           <Key>
             <PropertyRef Name="ChannelCategoryId" />
             <PropertyRef Name="ChannelId" />
@@ -189,7 +189,7 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <NavigationProperty Name="pg_ChannelCategory" Relationship="Self.FK_pg_Channels_pg_ChannelCategory" FromRole="pg_Channels" ToRole="pg_ChannelCategory" />
           <NavigationProperty Name="pg_ChannelSchedule" Relationship="Self.FK_pg_ChannelSchedule_pg_Channels" FromRole="pg_Channels" ToRole="pg_ChannelSchedule" />
         </EntityType>
-        <EntityType Name="pg_ChannelSchedule">
+        <EntityType Name="ChannelSchedule">
           <Key>
             <PropertyRef Name="ChannelCategoryId" />
             <PropertyRef Name="ChannelId" />
@@ -203,7 +203,7 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <Property Name="ProgramId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="pg_Channels" Relationship="Self.FK_pg_ChannelSchedule_pg_Channels" FromRole="pg_ChannelSchedule" ToRole="pg_Channels" />
         </EntityType>
-        <EntityType Name="pg_Language">
+        <EntityType Name="Language">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -211,7 +211,7 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <Property Name="languageId" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="pg_ProgramCategory">
+        <EntityType Name="ProgramCategory">
           <Key>
             <PropertyRef Name="ProgramCategoryId" />
           </Key>
@@ -220,7 +220,7 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="pg_Programs" Relationship="Self.FK_pg_Programs_pg_ProgramCategory" FromRole="pg_ProgramCategory" ToRole="pg_Programs" />
         </EntityType>
-        <EntityType Name="pg_Programs">
+        <EntityType Name="Programs">
           <Key>
             <PropertyRef Name="ProgramCategoryId" />
             <PropertyRef Name="ProgramId" />
@@ -250,10 +250,10 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_pg_Channels_pg_ChannelCategory">
-          <End Role="pg_ChannelCategory" Type="Self.pg_ChannelCategory" Multiplicity="1">
+          <End Role="pg_ChannelCategory" Type="ProgramGuideModel.ChannelCategory" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="pg_Channels" Type="Self.pg_Channels" Multiplicity="*" />
+          <End Role="pg_Channels" Type="ProgramGuideModel.Channels" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pg_ChannelCategory">
               <PropertyRef Name="ChannelCategoryId" />
@@ -264,10 +264,10 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_pg_ChannelSchedule_pg_Channels">
-          <End Role="pg_Channels" Type="Self.pg_Channels" Multiplicity="1">
+          <End Role="pg_Channels" Type="ProgramGuideModel.Channels" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="pg_ChannelSchedule" Type="Self.pg_ChannelSchedule" Multiplicity="*" />
+          <End Role="pg_ChannelSchedule" Type="ProgramGuideModel.ChannelSchedule" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pg_Channels">
               <PropertyRef Name="ChannelCategoryId" />
@@ -280,10 +280,10 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_pg_Programs_pg_ProgramCategory">
-          <End Role="pg_ProgramCategory" Type="Self.pg_ProgramCategory" Multiplicity="1">
+          <End Role="pg_ProgramCategory" Type="ProgramGuideModel.ProgramCategory" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="pg_Programs" Type="Self.pg_Programs" Multiplicity="*" />
+          <End Role="pg_Programs" Type="ProgramGuideModel.Programs" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pg_ProgramCategory">
               <PropertyRef Name="ProgramCategoryId" />
@@ -294,24 +294,24 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="cMind_ProgramGuideEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="pg_ChannelCategory" EntityType="Self.pg_ChannelCategory" />
-          <EntitySet Name="pg_Channels" EntityType="Self.pg_Channels" />
-          <EntitySet Name="pg_ChannelSchedule" EntityType="Self.pg_ChannelSchedule" />
-          <EntitySet Name="pg_Language" EntityType="Self.pg_Language" />
-          <EntitySet Name="pg_ProgramCategory" EntityType="Self.pg_ProgramCategory" />
-          <EntitySet Name="pg_Programs" EntityType="Self.pg_Programs" />
+          <EntitySet Name="ChannelCategories" EntityType="ProgramGuideModel.ChannelCategory" />
+          <EntitySet Name="Channels" EntityType="ProgramGuideModel.Channels" />
+          <EntitySet Name="ChannelSchedules" EntityType="ProgramGuideModel.ChannelSchedule" />
+          <EntitySet Name="Languages" EntityType="ProgramGuideModel.Language" />
+          <EntitySet Name="ProgramCategories" EntityType="ProgramGuideModel.ProgramCategory" />
+          <EntitySet Name="Programs" EntityType="ProgramGuideModel.Programs" />
           <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <AssociationSet Name="FK_pg_Channels_pg_ChannelCategory" Association="Self.FK_pg_Channels_pg_ChannelCategory">
-            <End Role="pg_ChannelCategory" EntitySet="pg_ChannelCategory" />
-            <End Role="pg_Channels" EntitySet="pg_Channels" />
+            <End Role="pg_ChannelCategory" EntitySet="ChannelCategories" />
+            <End Role="pg_Channels" EntitySet="Channels" />
           </AssociationSet>
           <AssociationSet Name="FK_pg_ChannelSchedule_pg_Channels" Association="Self.FK_pg_ChannelSchedule_pg_Channels">
-            <End Role="pg_Channels" EntitySet="pg_Channels" />
-            <End Role="pg_ChannelSchedule" EntitySet="pg_ChannelSchedule" />
+            <End Role="pg_Channels" EntitySet="Channels" />
+            <End Role="pg_ChannelSchedule" EntitySet="ChannelSchedules" />
           </AssociationSet>
           <AssociationSet Name="FK_pg_Programs_pg_ProgramCategory" Association="Self.FK_pg_Programs_pg_ProgramCategory">
-            <End Role="pg_ProgramCategory" EntitySet="pg_ProgramCategory" />
-            <End Role="pg_Programs" EntitySet="pg_Programs" />
+            <End Role="pg_ProgramCategory" EntitySet="ProgramCategories" />
+            <End Role="pg_Programs" EntitySet="Programs" />
           </AssociationSet>
           <FunctionImport Name="Insertchannel">
             <Parameter Name="ChannelCategoryId" Mode="In" Type="String" />
@@ -327,8 +327,8 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ProgramGuideModelStoreContainer" CdmEntityContainer="cMind_ProgramGuideEntities">
-          <EntitySetMapping Name="pg_ChannelCategory">
-            <EntityTypeMapping TypeName="ProgramGuideModel.pg_ChannelCategory">
+          <EntitySetMapping Name="ChannelCategories">
+            <EntityTypeMapping TypeName="ProgramGuideModel.ChannelCategory">
               <MappingFragment StoreEntitySet="pg_ChannelCategory">
                 <ScalarProperty Name="SNo" ColumnName="SNo" />
                 <ScalarProperty Name="ChannelCategoryId" ColumnName="ChannelCategoryId" />
@@ -336,8 +336,8 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="pg_Channels">
-            <EntityTypeMapping TypeName="ProgramGuideModel.pg_Channels">
+          <EntitySetMapping Name="Channels">
+            <EntityTypeMapping TypeName="ProgramGuideModel.Channels">
               <MappingFragment StoreEntitySet="pg_Channels">
                 <ScalarProperty Name="ChannelCategoryId" ColumnName="ChannelCategoryId" />
                 <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
@@ -346,8 +346,8 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="pg_ChannelSchedule">
-            <EntityTypeMapping TypeName="ProgramGuideModel.pg_ChannelSchedule">
+          <EntitySetMapping Name="ChannelSchedules">
+            <EntityTypeMapping TypeName="ProgramGuideModel.ChannelSchedule">
               <MappingFragment StoreEntitySet="pg_ChannelSchedule">
                 <ScalarProperty Name="ChannelCategoryId" ColumnName="ChannelCategoryId" />
                 <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
@@ -357,8 +357,8 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="pg_Language">
-            <EntityTypeMapping TypeName="ProgramGuideModel.pg_Language">
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="ProgramGuideModel.Language">
               <MappingFragment StoreEntitySet="pg_Language">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="languageId" ColumnName="languageId" />
@@ -366,8 +366,8 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="pg_ProgramCategory">
-            <EntityTypeMapping TypeName="ProgramGuideModel.pg_ProgramCategory">
+          <EntitySetMapping Name="ProgramCategories">
+            <EntityTypeMapping TypeName="ProgramGuideModel.ProgramCategory">
               <MappingFragment StoreEntitySet="pg_ProgramCategory">
                 <ScalarProperty Name="SNo" ColumnName="SNo" />
                 <ScalarProperty Name="ProgramCategoryId" ColumnName="ProgramCategoryId" />
@@ -375,8 +375,8 @@ FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="pg_Programs">
-            <EntityTypeMapping TypeName="ProgramGuideModel.pg_Programs">
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="ProgramGuideModel.Programs">
               <MappingFragment StoreEntitySet="pg_Programs">
                 <ScalarProperty Name="ProgramCategoryId" ColumnName="ProgramCategoryId" />
                 <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />

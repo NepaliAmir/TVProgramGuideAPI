@@ -11,20 +11,30 @@ namespace TvProgramGuideApi.DataLayer
     public class DataChannelDetail
     {
 
-        public Entities db = new Entities();
+        public ProgramGuideEntities db = new ProgramGuideEntities();
         public dynamic GetAllChannelDetails()
         {
-            //db.database_firewall_rules();
-            var channelDetails = from channel in db.ChannelDetails
-                                 select channel;
-            // var amir = from channel in db.ChannelDetails where db.ChannelDetails.id
-            //            select channel;
+            var channelDetails = from channels in db.Channels
+                                 join category in db.ChannelCategories on channels.ChannelCategoryId
+                               equals category.ChannelCategoryId
+                                 select new
+                                {
+                                    channels.ChannelId,
+                                    category.Description,
+                                    channels.Logopath,
+                                    channels.Name
+                                };
             return channelDetails;
         }
 
         public dynamic GetAllChannelCategoty()
         {
-            var channelCategory = db.ChannelCategories.ToList();
+            var channelCategory = from category in db.ChannelCategories
+                                  select new
+                                  {
+                                      category.ChannelCategoryId,
+                                      category.Description
+                                  };
             return channelCategory;
         }
         public dynamic GetAllLanguageType()
@@ -32,31 +42,31 @@ namespace TvProgramGuideApi.DataLayer
             var languageType = db.Languages.ToList();
             return languageType;
         }
-       
+
         public void SaveChannelDetail(string ChannelName)
         {
-            ChannelDetail channelDetail = new ChannelDetail();
-            channelDetail.ChannelName = ChannelName;
-            db.ChannelDetails.Add(channelDetail);
+            Channels channelDetail = new Channels();
+            channelDetail.Name = ChannelName;
+            db.Channels.Add(channelDetail);
             db.SaveChanges();
         }
-        public void SaveChannelLogoImagePath(int ChannelId, string imageName)
+        public void SaveChannelLogoImagePath(string ChannelId, string imageName)
         {
             string fullPath = "https://channelscheduleimage.blob.core.windows.net/pictures/" + imageName;
-            var result = db.ChannelDetails.Find(ChannelId);
+            var result = db.Channels.Find(ChannelId);
             if (result != null)
             {
-                result.ImagePath = fullPath;
+                result.Logopath = fullPath;
                 db.SaveChanges();
             }
 
         }
-        public void UpdateChannelDetail(string ChannelName, int? channelId)
+        public void UpdateChannelDetail(string ChannelName, string channelId)
         {
-            var chaQuery = db.ChannelDetails.SingleOrDefault(c => c.ChannelId == channelId);
+            var chaQuery = db.Channels.SingleOrDefault(c => c.ChannelId == channelId);
             if (chaQuery != null)
             {
-                chaQuery.ChannelName = ChannelName;
+                chaQuery.Name = ChannelName;
                 db.SaveChanges();
             }
         }

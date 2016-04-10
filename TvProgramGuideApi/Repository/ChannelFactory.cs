@@ -4,16 +4,17 @@ using System.Linq;
 using System.Web;
 using TvProgramGuideApi.Models;
 using TvProgramGuideApi.ServiceLayer;
+using TvProgramGuideApi.Models.ViewModel;
 namespace TvProgramGuideApi.Repository
 {
     public class ChannelFactory : IChannelFactory
     {
         public ChannelService channelService = new ChannelService();
-       
-        public List<ChannelDetail> GetAllChannels()
+
+        public List<ChannelInfoViewModel> GetAllChannels()
         {
             ChannelService channelService = new ChannelService();
-            List<ChannelDetail> channels = new List<ChannelDetail>();
+            List<ChannelInfoViewModel> channels = new List<ChannelInfoViewModel>();
             channels = channelService.GetAllChannelDetail();
             return channels;
         }
@@ -30,7 +31,7 @@ namespace TvProgramGuideApi.Repository
             return lstLangugae;
         }
        
-        public void SaveChannelLogoImagePath(int channelId, string imageName)
+        public void SaveChannelLogoImagePath(string  channelId, string imageName)
         {
 
             channelService.SaveChannelLogoImagePath(channelId, imageName);
@@ -39,7 +40,7 @@ namespace TvProgramGuideApi.Repository
         {
             channelService.SaveChannelDetail(channelName);
         }
-        public void UpdateChannelDetail(string channelName, int? channelId)
+        public void UpdateChannelDetail(string channelName, string channelId)
         {
             channelService.UpdateChannelDetail(channelName, channelId);
         }

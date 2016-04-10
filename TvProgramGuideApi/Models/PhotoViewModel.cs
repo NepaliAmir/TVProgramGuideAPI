@@ -13,6 +13,6 @@ namespace TvProgramGuideApi.Models
         public DateTime Modified { get; set; }
         public long Size { get; set; }
         public string Url { get; set; }
-        public int ChannelId { get; set; }
+        public string ChannelId { get; set; }
     }
 }

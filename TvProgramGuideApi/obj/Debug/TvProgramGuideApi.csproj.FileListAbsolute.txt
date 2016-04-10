@@ -105,3 +105,6 @@ C:\Users\amirgc\Desktop\GIT_Repo\TvProgramGuideApi\TvProgramGuideApi\bin\Antlr3.
 C:\Users\amirgc\Desktop\GIT_Repo\TvProgramGuideApi\TvProgramGuideApi\obj\Debug\TvProgramGuideApi.csprojResolveAssemblyReference.cache
 C:\Users\amirgc\Desktop\GIT_Repo\TvProgramGuideApi\TvProgramGuideApi\obj\Debug\TvProgramGuideApi.dll
 C:\Users\amirgc\Desktop\GIT_Repo\TvProgramGuideApi\TvProgramGuideApi\obj\Debug\TvProgramGuideApi.pdb
+C:\Users\amirgc\Desktop\GIT_Repo\TVProgramGuideApi\TvProgramGuideApi\bin\System.Web.Cors.dll
+C:\Users\amirgc\Desktop\GIT_Repo\TVProgramGuideApi\TvProgramGuideApi\bin\System.Web.Http.Cors.dll
+C:\Users\amirgc\Desktop\GIT_Repo\TVProgramGuideApi\TvProgramGuideApi\bin\System.Web.Http.Cors.xml

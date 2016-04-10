@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TvProgramGuideApi.Models;
+using TvProgramGuideApi.Models.ViewModel;
 using TvProgramGuideApi.DataLayer;
 using System.Data;
 
@@ -10,22 +11,22 @@ namespace TvProgramGuideApi.ServiceLayer
     public class ChannelService : IChannelService
     {
         DataChannelDetail datachannelDetail = new DataChannelDetail();
-        public List<ChannelDetail> GetAllChannelDetail()
+        public List<ChannelInfoViewModel> GetAllChannelDetail()
         {
             var channelDetails = datachannelDetail.GetAllChannelDetails();
-            List<ChannelDetail> lstchannelDetail = new List<ChannelDetail>();
+            List<ChannelInfoViewModel> lstchannelDetail = new List<ChannelInfoViewModel>();
             if (channelDetails != null)
             {
                 try
                 {
                     foreach (var item in channelDetails) // Loop over the rows.
                     {
-                        ChannelDetail channeldetail = new ChannelDetail()
+                        ChannelInfoViewModel channeldetail = new ChannelInfoViewModel()
                         {
-                            Id = Convert.ToInt16(item.Id),
-                            ChannelId = Convert.ToInt16(item.ChannelId),
-                            ChannelName = Convert.ToString(item.ChannelName),
-                            ImagePath = Convert.ToString(item.ImagePath)
+                            CategoryDescription = item.Description,
+                            ChannelId = Convert.ToString(item.ChannelId),
+                            ChannelName = Convert.ToString(item.Name),
+                            LogoPath = Convert.ToString("https://channelscheduleimage.blob.core.windows.net/pictures/" + item.Logopath) 
                         };
                         lstchannelDetail.Add(channeldetail);
                     }
@@ -48,8 +49,8 @@ namespace TvProgramGuideApi.ServiceLayer
                 {
                     Language languageType = new Language()
                     {
-                        LanguageId = Convert.ToInt16(item.LanguageId),
-                        LanguageName = item.LanguageName
+                        languageId = Convert.ToInt16(item.LanguageId),
+                        Name = item.LanguageName
                     };
                     lstLangugae.Add(languageType);
                 }
@@ -69,9 +70,8 @@ namespace TvProgramGuideApi.ServiceLayer
                     {
                         ChannelCategory channelcategory = new ChannelCategory()
                         {
-                            Id = Convert.ToInt16(item.Id),
-                            CategoryId = Convert.ToInt16(item.CategoryId),
-                            CategoryName = item.CategoryName
+                            ChannelCategoryId = item.ChannelCategoryId,
+                            Description = item.Description
                         };
                         lstchannelCategory.Add(channelcategory);
                     }
@@ -85,7 +85,7 @@ namespace TvProgramGuideApi.ServiceLayer
             }
             return lstchannelCategory;
         }
-        public void SaveChannelLogoImagePath(int channelId, string imageName)
+        public void SaveChannelLogoImagePath(string channelId, string imageName)
         {
             datachannelDetail.SaveChannelLogoImagePath(channelId, imageName);
         }
@@ -93,7 +93,7 @@ namespace TvProgramGuideApi.ServiceLayer
         {
             datachannelDetail.SaveChannelDetail(channelName);
         }
-        public void UpdateChannelDetail(string channelName, int? channelId)
+        public void UpdateChannelDetail(string channelName, string channelId)
         {
             datachannelDetail.UpdateChannelDetail(channelName, channelId);
         }
