@@ -13,8 +13,8 @@ namespace TvProgramGuideApi.Repository
     {
         List<ChannelInfoViewModel> GetAllChannels();
         void SaveChannelLogoImagePath(string channelId, string imageName);
-        void SaveChannelDetail(string channelName);
-        void UpdateChannelDetail(string channelName, string channelId);
+        void SaveChannelDetail(string channelName,string channelCategoryId);
+        void UpdateChannelDetail(string channelName,string channelCategoryId, string channelId);
         List<ChannelCategory> GetAllChannelCategoty();
         List<Language> GetAllLanguageType();
        

@@ -36,13 +36,13 @@ namespace TvProgramGuideApi.Repository
 
             channelService.SaveChannelLogoImagePath(channelId, imageName);
         }
-        public void SaveChannelDetail(string channelName)
+        public void SaveChannelDetail(string channelName,string channelCategory)
         {
-            channelService.SaveChannelDetail(channelName);
+            channelService.SaveChannelDetail(channelName, channelCategory);
         }
-        public void UpdateChannelDetail(string channelName, string channelId)
+        public void UpdateChannelDetail(string channelName, string channelCategory,string channelId)
         {
-            channelService.UpdateChannelDetail(channelName, channelId);
+            channelService.UpdateChannelDetail(channelName,  channelCategory,channelId);
         }
 
     }

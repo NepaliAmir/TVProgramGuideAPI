@@ -101,11 +101,11 @@ namespace TvProgramGuideApi.Controllers
 
             if (channelDetail.ChannelId != null)
             {
-                factory.UpdateChannelDetail(channelDetail.Name, channelDetail.ChannelId);
+                factory.UpdateChannelDetail(channelDetail.Name, channelDetail.ChannelCategoryId,channelDetail.ChannelId);
             }
             else
             {
-                factory.SaveChannelDetail(channelDetail.Name);
+                factory.SaveChannelDetail(channelDetail.Name,channelDetail.ChannelCategoryId);
             }
         }
 

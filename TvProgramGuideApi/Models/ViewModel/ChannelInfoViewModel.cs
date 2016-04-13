@@ -9,6 +9,7 @@ namespace TvProgramGuideApi.Models.ViewModel
     {
         public string ChannelId { get; set; }
         public string CategoryDescription { get; set; }
+        public string CategoryId { get; set; }
         public string LogoPath { get; set; }
         public string ChannelName { get; set; }
     }

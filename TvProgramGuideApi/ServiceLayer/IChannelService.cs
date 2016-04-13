@@ -12,8 +12,8 @@ namespace TvProgramGuideApi.ServiceLayer
     {
         List<ChannelInfoViewModel> GetAllChannelDetail();
         void SaveChannelLogoImagePath(string ChannelId, string imageName);
-        void SaveChannelDetail(string ChannelName);
-        void UpdateChannelDetail(string ChannelName, string channelId);
+        void SaveChannelDetail(string ChannelName, string channelCategoryId);
+        void UpdateChannelDetail(string ChannelName,string channelCategoryId, string channelId);
         List<ChannelCategory> GetAllChannelCategoty();
         List<Language> GetAllLanguageType();
       

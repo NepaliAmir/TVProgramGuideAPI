@@ -25,6 +25,7 @@ namespace TvProgramGuideApi.ServiceLayer
                         {
                             CategoryDescription = item.Description,
                             ChannelId = Convert.ToString(item.ChannelId),
+                            CategoryId=item.ChannelCategoryId,
                             ChannelName = Convert.ToString(item.Name),
                             LogoPath = Convert.ToString("https://channelscheduleimage.blob.core.windows.net/pictures/" + item.Logopath) 
                         };
@@ -89,13 +90,13 @@ namespace TvProgramGuideApi.ServiceLayer
         {
             datachannelDetail.SaveChannelLogoImagePath(channelId, imageName);
         }
-        public void SaveChannelDetail(string channelName)
+        public void SaveChannelDetail(string channelName, string channelCategoryId)
         {
-            datachannelDetail.SaveChannelDetail(channelName);
+            datachannelDetail.SaveChannelDetail(channelName, channelCategoryId);
         }
-        public void UpdateChannelDetail(string channelName, string channelId)
+        public void UpdateChannelDetail(string channelName, string channelCategoryId, string channelId)
         {
-            datachannelDetail.UpdateChannelDetail(channelName, channelId);
+            datachannelDetail.UpdateChannelDetail(channelName, channelCategoryId, channelId);
         }
 
     }

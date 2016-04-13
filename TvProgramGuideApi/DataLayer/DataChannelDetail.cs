@@ -21,6 +21,7 @@ namespace TvProgramGuideApi.DataLayer
                                 {
                                     channels.ChannelId,
                                     category.Description,
+                                    category.ChannelCategoryId,
                                     channels.Logopath,
                                     channels.Name
                                 };
@@ -43,10 +44,11 @@ namespace TvProgramGuideApi.DataLayer
             return languageType;
         }
 
-        public void SaveChannelDetail(string ChannelName)
+        public void SaveChannelDetail(string ChannelName, string channelCategoryId)
         {
             Channels channelDetail = new Channels();
             channelDetail.Name = ChannelName;
+            channelDetail.ChannelCategoryId = channelCategoryId;
             db.Channels.Add(channelDetail);
             db.SaveChanges();
         }
@@ -61,12 +63,13 @@ namespace TvProgramGuideApi.DataLayer
             }
 
         }
-        public void UpdateChannelDetail(string ChannelName, string channelId)
+        public void UpdateChannelDetail(string ChannelName,string channelCategoryId, string channelId)
         {
             var chaQuery = db.Channels.SingleOrDefault(c => c.ChannelId == channelId);
             if (chaQuery != null)
             {
                 chaQuery.Name = ChannelName;
+                chaQuery.ChannelCategoryId = channelCategoryId;
                 db.SaveChanges();
             }
         }
