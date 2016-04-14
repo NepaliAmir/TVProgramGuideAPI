@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProgramGuideModelStoreContainer" CdmEntityContainer="cMind_ProgramGuideEntities">
+    <EntitySetMapping Name="ChannelCategories">
+      <EntityTypeMapping TypeName="ProgramGuideModel.ChannelCategory">
+        <MappingFragment StoreEntitySet="pg_ChannelCategory">
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+          <ScalarProperty Name="ChannelCategoryId" ColumnName="ChannelCategoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Channels">
+      <EntityTypeMapping TypeName="ProgramGuideModel.Channels">
+        <MappingFragment StoreEntitySet="pg_Channels">
+          <ScalarProperty Name="ChannelCategoryId" ColumnName="ChannelCategoryId" />
+          <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Logopath" ColumnName="Logopath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChannelSchedules">
+      <EntityTypeMapping TypeName="ProgramGuideModel.ChannelSchedule">
+        <MappingFragment StoreEntitySet="pg_ChannelSchedule">
+          <ScalarProperty Name="ChannelCategoryId" ColumnName="ChannelCategoryId" />
+          <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+          <ScalarProperty Name="BroadcastDate" ColumnName="BroadcastDate" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Languages">
+      <EntityTypeMapping TypeName="ProgramGuideModel.Language">
+        <MappingFragment StoreEntitySet="pg_Language">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="languageId" ColumnName="languageId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramCategories">
+      <EntityTypeMapping TypeName="ProgramGuideModel.ProgramCategory">
+        <MappingFragment StoreEntitySet="pg_ProgramCategory">
+          <ScalarProperty Name="SNo" ColumnName="SNo" />
+          <ScalarProperty Name="ProgramCategoryId" ColumnName="ProgramCategoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="ProgramGuideModel.Programs">
+        <MappingFragment StoreEntitySet="pg_Programs">
+          <ScalarProperty Name="ProgramCategoryId" ColumnName="ProgramCategoryId" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+          <ScalarProperty Name="Logopath" ColumnName="Logopath" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="database_firewall_rules">
+      <EntityTypeMapping TypeName="ProgramGuideModel.database_firewall_rules">
+        <MappingFragment StoreEntitySet="database_firewall_rules">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+          <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Insertchannel" FunctionName="ProgramGuideModel.Store.Insertchannel" />
+    <FunctionImportMapping FunctionImportName="InsertChannelCategory" FunctionName="ProgramGuideModel.Store.InsertChannelCategory" />
+  </EntityContainerMapping>
+</Mapping>
