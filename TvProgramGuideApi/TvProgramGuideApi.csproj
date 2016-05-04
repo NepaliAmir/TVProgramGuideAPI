@@ -259,7 +259,9 @@
       <DependentUpon>ProgramGuideEntity.edmx</DependentUpon>
       <LastGenOutput>ProgramGuideEntity.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\tvProgramApi - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\tvProgramApi - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\tvProgramApi - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\tvProgramApi - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
