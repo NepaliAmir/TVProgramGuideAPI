@@ -13,13 +13,18 @@ namespace TvProgramGuideApi.Controllers
 {
     public class ProgramController : ApiController
     {
-        public ProgramFactory programFactory = new ProgramFactory();
+        private readonly IProgramFactory _programFactory;
+
+        public ProgramController(IProgramFactory programController)
+        {
+            _programFactory = programController;
+        }
 
         [HttpGet]
         public HttpResponseMessage GetAllProgramCategory()
         {
             List<ProgramCategory> lstProgramCategory = new List<ProgramCategory>();
-            lstProgramCategory = programFactory.GetAllProgramCategory();
+            lstProgramCategory = _programFactory.GetAllProgramCategory();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, lstProgramCategory);
             return response;
         }
@@ -29,7 +34,7 @@ namespace TvProgramGuideApi.Controllers
             int channelId = 1;
             //Program Name,ProgramType,Program language,ImageProgram
             List<ProgramsDetailsScheduleDTO> lstprogramInfoDTO = new List<ProgramsDetailsScheduleDTO>();
-            lstprogramInfoDTO = programFactory.GetProgramSchedulesDetailByChannelId(channelId);
+            lstprogramInfoDTO = _programFactory.GetProgramSchedulesDetailByChannelId(channelId);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, lstprogramInfoDTO);
             return response;
         }

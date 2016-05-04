@@ -8,7 +8,7 @@ using TvProgramGuideApi.Models.DTO;
 
 namespace TvProgramGuideApi.Repository
 {
-    interface IProgramFactory
+    public interface IProgramFactory
     {
         List<ProgramCategory> GetAllProgramCategory();
         List<ProgramsDetailsScheduleDTO> GetProgramSchedulesDetailByChannelId(int channelId);

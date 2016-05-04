@@ -9,7 +9,11 @@ namespace TvProgramGuideApi.Repository
 {
     public class ChannelFactory : IChannelFactory
     {
-        public ChannelService channelService = new ChannelService();
+        private readonly IChannelService _channelService ;
+        public ChannelFactory(IChannelService channelService)
+        {
+            _channelService = channelService;
+        }
 
         public List<ChannelInfoViewModel> GetAllChannels()
         {
@@ -21,28 +25,28 @@ namespace TvProgramGuideApi.Repository
         public List<ChannelCategory> GetAllChannelCategoty()
         {
             List<ChannelCategory> lstchannelCategory = new List<ChannelCategory>();
-            lstchannelCategory = channelService.GetAllChannelCategoty();
+            lstchannelCategory = _channelService.GetAllChannelCategoty();
             return lstchannelCategory;
         }
         public List<Language> GetAllLanguageType()
         {
             List<Language> lstLangugae = new List<Language>();
-            lstLangugae = channelService.GetAllLanguageType();
+            lstLangugae = _channelService.GetAllLanguageType();
             return lstLangugae;
         }
        
         public void SaveChannelLogoImagePath(string  channelId, string imageName)
         {
 
-            channelService.SaveChannelLogoImagePath(channelId, imageName);
+            _channelService.SaveChannelLogoImagePath(channelId, imageName);
         }
         public void SaveChannelDetail(string channelName,string channelCategory)
         {
-            channelService.SaveChannelDetail(channelName, channelCategory);
+            _channelService.SaveChannelDetail(channelName, channelCategory);
         }
         public void UpdateChannelDetail(string channelName, string channelCategory,string channelId)
         {
-            channelService.UpdateChannelDetail(channelName,  channelCategory,channelId);
+            _channelService.UpdateChannelDetail(channelName,  channelCategory,channelId);
         }
 
     }

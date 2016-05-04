@@ -8,19 +8,23 @@ using TvProgramGuideApi.Models.DTO;
 
 namespace TvProgramGuideApi.Repository
 {
-    public class ProgramFactory
+    public class ProgramFactory : IProgramFactory
     {
-        public ProgramService programService = new ProgramService();
+        private readonly IProgramService _programService;
+        public ProgramFactory(IProgramService programService)
+        {
+            _programService = programService;
+        }
         public List<ProgramCategory> GetAllProgramCategory()
         {
             List<ProgramCategory> lstProgramCategory = new List<ProgramCategory>();
-            lstProgramCategory = programService.GetAllProgramCategory();
+            lstProgramCategory = _programService.GetAllProgramCategory();
             return lstProgramCategory;
         }
         public List<ProgramsDetailsScheduleDTO> GetProgramSchedulesDetailByChannelId(int channelId)
         {
             List<ProgramsDetailsScheduleDTO> lstProgramScheduleDetails = new List<ProgramsDetailsScheduleDTO>();
-            lstProgramScheduleDetails = programService.GetProgramSchedulesDetailByChannelId(channelId);
+            lstProgramScheduleDetails = _programService.GetProgramSchedulesDetailByChannelId(channelId);
             return lstProgramScheduleDetails;
         }
     }

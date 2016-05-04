@@ -9,7 +9,7 @@ using TvProgramGuideApi.Models.DTO;
 
 namespace TvProgramGuideApi.ServiceLayer
 {
-    interface IProgramService
+    public interface IProgramService
     {
         List<ProgramsDetailsScheduleDTO> GetProgramSchedulesDetailByChannelId(int id);
         List<ProgramCategory> GetAllProgramCategory();

@@ -13,20 +13,25 @@ using TvProgramGuideApi.App_Start;
 
 namespace TvProgramGuideApi.Controllers
 {
-   // [EnableCors(origins: "http://tvprogramapi.azurewebsites.net", headers: "*", methods: "*")]
-   // [EnableCors(origins: "http://localhost:7783/", headers: "*", methods: "post,get")]
+    // [EnableCors(origins: "http://tvprogramapi.azurewebsites.net", headers: "*", methods: "*")]
+    // [EnableCors(origins: "http://localhost:7783/", headers: "*", methods: "post,get")]
 
     [AllowCORS]
     public class ChannelController : ApiController
     {
-        #region get
-        public ChannelFactory factory = new ChannelFactory();
 
+        private readonly IChannelFactory _channelFactory;
+
+        public ChannelController(IChannelFactory channelFactory)
+        {
+            _channelFactory = channelFactory;
+        }
+        #region get
         [HttpGet]
         public HttpResponseMessage AllChannelName()
         {
             List<ChannelInfoViewModel> channels = new List<ChannelInfoViewModel>();
-            channels = factory.GetAllChannels();
+            channels = _channelFactory.GetAllChannels();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, channels);
             return response;
         }
@@ -78,7 +83,7 @@ namespace TvProgramGuideApi.Controllers
         public HttpResponseMessage GetAllChannelCategory()
         {
             List<ChannelCategory> channelCategory = new List<ChannelCategory>();
-            channelCategory = factory.GetAllChannelCategoty();
+            channelCategory = _channelFactory.GetAllChannelCategoty();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, channelCategory);
             return response;
         }
@@ -86,7 +91,7 @@ namespace TvProgramGuideApi.Controllers
         public HttpResponseMessage GetAllLanguageType()
         {
             List<Language> lstLanguage = new List<Language>();
-            lstLanguage = factory.GetAllLanguageType();
+            lstLanguage = _channelFactory.GetAllLanguageType();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, lstLanguage);
             return response;
         }
@@ -97,15 +102,13 @@ namespace TvProgramGuideApi.Controllers
         [HttpPost]
         public void SaveUpdateChannelDetail(Channels channelDetail)
         {
-            ChannelFactory factory = new ChannelFactory();
-
             if (channelDetail.ChannelId != null)
             {
-                factory.UpdateChannelDetail(channelDetail.Name, channelDetail.ChannelCategoryId,channelDetail.ChannelId);
+                _channelFactory.UpdateChannelDetail(channelDetail.Name, channelDetail.ChannelCategoryId, channelDetail.ChannelId);
             }
             else
             {
-                factory.SaveChannelDetail(channelDetail.Name,channelDetail.ChannelCategoryId);
+                _channelFactory.SaveChannelDetail(channelDetail.Name, channelDetail.ChannelCategoryId);
             }
         }
 
@@ -114,8 +117,7 @@ namespace TvProgramGuideApi.Controllers
         {
             string ChannelId = photoDetail.ChannelId;
             string imageName = photoDetail.Name;
-            ChannelFactory factory = new ChannelFactory();
-            factory.SaveChannelLogoImagePath(ChannelId, imageName);
+            _channelFactory.SaveChannelLogoImagePath(ChannelId, imageName);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, "message");
             return response;
         }
